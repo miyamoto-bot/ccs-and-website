@@ -133,16 +133,19 @@ p { margin: 0 0 1.1em; }
    Hero
    ========================================================== */
 .hero { padding-block: clamp(4rem, 12vh, 7rem) var(--s-6); overflow: hidden; }
-.hero .rings { right: -14%; top: 6%; width: min(90vw, 560px); }
+/* スマホ：円は下側・薄めに置き、文字の可読性を優先 */
+.hero .rings { right: -38%; top: auto; bottom: -2%; width: 84vw; opacity: .55; }
 .hero-inner { position: relative; z-index: 1; }
 .hero-eyebrow { font-family: var(--f-round); color: var(--c-teal); font-size: .95rem; margin-bottom: var(--s-3); }
 .hero h1 {
   font-family: var(--f-round);
-  font-size: clamp(1.9rem, 1.2rem + 3.6vw, 3.2rem);
-  line-height: 1.5;
+  font-size: clamp(1.55rem, .9rem + 3.8vw, 3rem);
+  line-height: 1.6;
   letter-spacing: .01em;
-  max-width: 14em;
+  word-break: keep-all;
 }
+/* 「地域で動いてきたから、／届く仕組みを。」を必ず2行で表示する */
+.hero h1 .line { display: inline-block; white-space: nowrap; }
 .hero h1 .accent { background: linear-gradient(transparent 64%, color-mix(in srgb, var(--c-yellow) 60%, transparent) 64%); }
 .hero-sub { margin-top: var(--s-3); max-width: 30em; color: var(--c-ink); }
 .hero-brand { margin-top: var(--s-5); font-size: .85rem; color: var(--c-muted); }
@@ -364,7 +367,8 @@ p { margin: 0 0 1.1em; }
   .profile-card { grid-template-columns: 160px 1fr; gap: var(--s-4); }
   .avatar { width: 150px; height: 150px; }
   .origin { grid-template-columns: 1fr 1fr; gap: 0 var(--s-4); }
-  .hero .rings { right: -6%; top: 0; width: 620px; }
+  .hero .rings { right: -6%; top: 0; bottom: auto; width: 620px; opacity: 1; }
+  .hero h1 { font-size: clamp(2.4rem, 1.6rem + 2.6vw, 3.2rem); }
 }
 @media (min-width: 1000px) {
   .cards { gap: var(--s-4); }
@@ -421,7 +425,7 @@ p { margin: 0 0 1.1em; }
   </svg>
   <div class="wrap hero-inner">
     <p class="hero-eyebrow reveal">NPO・地域の運営基盤づくり</p>
-    <h1 class="reveal">地域で動いてきたから、<span class="accent">届く仕組み</span>を。</h1>
+    <h1 class="reveal"><span class="line">地域で動いてきたから、</span><br><span class="line">届く<span class="accent">仕組み</span>を。</span></h1>
     <p class="hero-sub reveal">NPOや地域で活動する人たちが、<br>安心して動き続けられる仕組みを、ともにつくります。</p>
     <a class="btn reveal" href="#contact">まずは、話してみませんか。</a>
     <p class="hero-brand reveal"><strong>Co-Creation Studio and.</strong>　代表 宮本 亜佳音</p>
@@ -628,7 +632,7 @@ p { margin: 0 0 1.1em; }
 
       <div class="field check">
         <input id="f-agree" name="agree" type="checkbox" required>
-        <label for="f-agree">個人情報の取り扱いに同意します。いただいた内容は、ご相談への返信のためだけに使用します。 <span class="req">必須</span></label>
+        <label for="f-agree"><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に記載の個人情報の取り扱いに同意します。 <span class="req">必須</span></label>
       </div>
 
       <button class="btn" type="submit">送信する</button>
@@ -645,6 +649,7 @@ p { margin: 0 0 1.1em; }
   <div class="wrap">
     <p style="margin:0">Co-Creation Studio and.　代表 宮本 亜佳音</p>
     <p style="margin:0">Mail: <a href="mailto:miyamoto@ccs-and.com">miyamoto@ccs-and.com</a></p>
+    <p style="margin:0"><a href="privacy.html">プライバシーポリシー</a></p>
     <p style="margin:0">© <span id="year"></span> Co-Creation Studio and.</p>
   </div>
 </footer>
@@ -695,20 +700,20 @@ p { margin: 0 0 1.1em; }
      実在するnote記事のみ追加してください。
      sample: true は「サンプル」表示になります。
      url は、各記事のnoteのURLを入れます（空の場合はnoteのプロフィールへ）。 ---- */
-  const NOTE_PROFILE_URL = 'https://note.com/'; // ← 亜佳音さんのnoteのURLに差し替え
+  const NOTE_PROFILE_URL = 'https://note.com/tek';
   const notes = [
-    { sample: true, date: '2026.09.01', category: 'ガバナンス',
-      title: '（サンプル）理事会の「決め方」を、もう一度見直してみる',
-      body: '誰が何を決めるのか。曖昧なまま続いてきた決め方を、現場の感覚とあわせて整理する視点を書く予定の記事です。',
-      url: '' },
-    { sample: true, date: '2026.09.15', category: 'リスクマネジメント',
-      title: '（サンプル）「もしものとき」を、怖がらずに話せる組織へ',
-      body: '起きてから慌てないために、先に話しておきたいことの考え方を書く予定の記事です。',
-      url: '' },
-    { sample: true, date: '2026.10.01', category: '地域協働',
-      title: '（サンプル）地域の人と、同じ景色を見るために',
-      body: '立場が違う人と協働するときに、最初に共有しておきたいことについて書く予定の記事です。',
-      url: '' }
+    { sample: false, date: '2025.10.11', category: '活動の振り返り',
+      title: '私の最初の挑戦 フリーペーパーをどうやって作ったか',
+      body: '地域の子どもたちに「いろんな生き方がある」と伝えたくて始めたフリーペーパーづくりの、当時の作り方を振り返ります。',
+      url: 'https://note.com/tek/n/n42c359dfcba4' },
+    { sample: false, date: '2025.09.29', category: 'NPO',
+      title: 'NPOに大切なのは“共感”',
+      body: '地域でフリーペーパーを作る中で気づいた、活動を支える「共感」の大切さについて書いています。',
+      url: 'https://note.com/tek/n/n10021f2ea753' },
+    { sample: false, date: '2025.09.28', category: '想い',
+      title: 'ゆらぎラボ立ち上げの想い',
+      body: '不確実な時代に「揺らぎ」を前提に生きる力を育てたい、という思いで立ち上げた経緯を書いています。',
+      url: 'https://note.com/tek/n/n7619003c47d4' }
   ];
 
   const noteList = document.getElementById('note-list');
