@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Co-Creation Studio and. | 地域で動いてきたから、届く仕組みを。</title>
+<meta name="description" content="NPOや地域で活動する人たちが、安心して動き続けられる仕組みを、ともにつくります。Co-Creation Studio and.（代表：宮本 亜佳音）">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ccs-and.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='12' cy='16' r='8' fill='%23D97B66'/%3E%3Ccircle cx='20' cy='16' r='8' fill='%233A7A78'/%3E%3Cpath d='M16 9.9a8 8 0 0 1 0 12.2 8 8 0 0 1 0-12.2z' fill='%23EEC45A'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Co-Creation Studio and.">
+<meta property="og:title" content="Co-Creation Studio and. | 地域で動いてきたから、届く仕組みを。">
+<meta property="og:description" content="NPOの「守り」を、社会の「力」に。安心の架け橋を、ともにつくる。">
+<meta property="og:url" content="https://ccs-and.com/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   Brand tokens（名刺の色から起こした。変更はここだけ）
+   ========================================================== */
+:root {
+  --c-ivory:      #FDFBF3;   /* 名刺・表面の生成り */
+  --c-ivory-2:    #F6F2E7;   /* セクション背景（やや濃いアイボリー） */
+  --c-mint:       #E4EFEC;   /* 名刺・裏面の淡いブルーグリーン */
+  --c-mint-2:     #C5DDD8;
+  --c-coral:      #D97B66;   /* ロゴ：コーラル */
+  --c-teal:       #3A7A78;   /* ロゴ：ティール */
+  --c-teal-deep:  #2B5A5A;   /* 見出し・名前（名刺の文字色） */
+  --c-yellow:     #EEC45A;   /* ロゴの重なり部分 */
+  --c-brick:      #A4432E;   /* 「代表」など差し色の赤茶 */
+  --c-ink:        #2F3B3A;   /* 本文 */
+  --c-muted:      #6B7876;
+
+  --f-sans:  "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --f-round: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+
+  --s-1: .5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.5rem; --s-5: 4rem; --s-6: 6rem;
+  --radius: 20px;
+  --maxw: 1080px;
+}
+
+/* ==========================================================
+   Base
+   ========================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--f-sans);
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: .02em;
+  color: var(--c-ink);
+  background: var(--c-ivory);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: var(--c-teal-deep); text-underline-offset: .2em; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--c-yellow); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--c-teal-deep); color: #fff; padding: .6rem 1rem; z-index: 100; }
+.skip:focus { left: 1rem; top: 1rem; }
+
+.wrap { width: min(100% - 2.5rem, var(--maxw)); margin-inline: auto; }
+section { position: relative; padding-block: var(--s-6); }
+.section-label {
+  font-family: var(--f-round);
+  font-size: .8rem;
+  letter-spacing: .18em;
+  color: var(--c-teal);
+  margin: 0 0 var(--s-1);
+  text-transform: uppercase;
+}
+h1, h2, h3 { line-height: 1.5; color: var(--c-teal-deep); margin: 0; font-weight: 700; }
+h2 { font-size: clamp(1.45rem, 1rem + 2vw, 2rem); margin-bottom: var(--s-3); }
+h3 { font-size: 1.15rem; margin-bottom: var(--s-1); }
+p { margin: 0 0 1.1em; }
+.lead { font-size: clamp(1rem, .95rem + .3vw, 1.125rem); }
+.muted { color: var(--c-muted); }
+
+/* 重なる円（名刺ロゴ）— 背景アクセントとして控えめに */
+.rings { position: absolute; pointer-events: none; z-index: 0; }
+
+/* ==========================================================
+   Logo（コーラル・ティール・重なりの黄色）
+   ========================================================== */
+.logo-mark { width: 40px; height: 40px; flex: none; }
+
+/* ==========================================================
+   Header
+   ========================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--c-ivory) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-teal) 14%, transparent);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: .65rem; text-decoration: none; color: var(--c-teal-deep); }
+.brand-name { font-family: var(--f-round); font-weight: 700; font-size: .95rem; line-height: 1.25; }
+.brand-name small { display: block; font-family: var(--f-sans); font-weight: 400; font-size: .7rem; color: var(--c-muted); letter-spacing: .04em; }
+.nav-toggle {
+  width: 44px; height: 44px; border: 0; background: none; cursor: pointer; color: var(--c-teal-deep);
+  display: grid; place-items: center;
+}
+.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
+  content: ""; display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px;
+  transition: transform .3s ease, opacity .3s ease; position: relative;
+}
+.nav-toggle span::before { position: absolute; transform: translateY(-7px); }
+.nav-toggle span::after  { position: absolute; transform: translateY(7px); }
+.nav-toggle[aria-expanded="true"] span { background: transparent; }
+.nav-toggle[aria-expanded="true"] span::before { transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span::after  { transform: rotate(-45deg); }
+
+.site-nav {
+  position: fixed; inset: 64px 0 auto 0;
+  background: var(--c-ivory);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-teal) 14%, transparent);
+  padding: var(--s-2) 1.25rem var(--s-3);
+  transform: translateY(-8px); opacity: 0; visibility: hidden;
+  transition: opacity .25s ease, transform .25s ease, visibility .25s;
+}
+.site-nav.open { opacity: 1; transform: none; visibility: visible; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .25rem; }
+.site-nav a { display: block; padding: .7rem .2rem; text-decoration: none; color: var(--c-ink); border-bottom: 1px dashed color-mix(in srgb, var(--c-teal) 25%, transparent); }
+
+/* ==========================================================
+   Hero
+   ========================================================== */
+.hero { padding-block: clamp(4rem, 12vh, 7rem) var(--s-6); overflow: hidden; }
+.hero .rings { right: -14%; top: 6%; width: min(90vw, 560px); }
+.hero-inner { position: relative; z-index: 1; }
+.hero-eyebrow { font-family: var(--f-round); color: var(--c-teal); font-size: .95rem; margin-bottom: var(--s-3); }
+.hero h1 {
+  font-family: var(--f-round);
+  font-size: clamp(1.9rem, 1.2rem + 3.6vw, 3.2rem);
+  line-height: 1.5;
+  letter-spacing: .01em;
+  max-width: 14em;
+}
+.hero h1 .accent { background: linear-gradient(transparent 64%, color-mix(in srgb, var(--c-yellow) 60%, transparent) 64%); }
+.hero-sub { margin-top: var(--s-3); max-width: 30em; color: var(--c-ink); }
+.hero-brand { margin-top: var(--s-5); font-size: .85rem; color: var(--c-muted); }
+.hero-brand strong { font-family: var(--f-round); color: var(--c-teal-deep); font-weight: 700; font-size: 1rem; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-top: var(--s-3);
+  padding: .85rem 1.5rem;
+  border-radius: 999px;
+  background: var(--c-teal-deep); color: #fff;
+  text-decoration: none; font-weight: 500;
+  transition: background .25s ease, transform .25s ease;
+}
+.btn:hover { background: var(--c-teal); transform: translateY(-1px); }
+
+/* ==========================================================
+   About
+   ========================================================== */
+.about { background: var(--c-ivory-2); }
+.about .rings { left: -12%; bottom: -8%; width: min(80vw, 420px); }
+.about-body { position: relative; z-index: 1; max-width: 40em; }
+.about-quote {
+  font-family: var(--f-round);
+  font-size: clamp(1.35rem, 1rem + 1.4vw, 1.9rem);
+  color: var(--c-teal-deep);
+  line-height: 1.7;
+  margin: var(--s-4) 0;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--c-coral);
+}
+.about-points { display: grid; gap: var(--s-3); margin-top: var(--s-4); }
+.about-points div { padding-left: 1rem; border-left: 2px solid var(--c-mint-2); }
+.about-points p { margin: 0; }
+
+/* ==========================================================
+   Service
+   ========================================================== */
+.service-intro { max-width: 36em; margin-bottom: var(--s-4); }
+.cards { display: grid; gap: var(--s-3); grid-template-columns: 1fr; }
+.card {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--s-4) var(--s-3);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--c-teal) 10%, transparent), 0 12px 30px -22px rgba(43,90,90,.35);
+  overflow: hidden;
+}
+.card::before {
+  content: ""; position: absolute; top: -30px; right: -30px; width: 116px; height: 116px;
+  border-radius: 50%; background: var(--tint); opacity: .6; z-index: 0;
+}
+.card > * { position: relative; z-index: 1; }
+.card-no { font-family: var(--f-round); font-size: .85rem; color: var(--c-muted); letter-spacing: .12em; margin: 0; }
+.card h3 { font-family: var(--f-round); font-size: 1.3rem; margin: .2rem 0 .5rem; }
+.card-desc { color: var(--c-ink); margin-bottom: var(--s-3); }
+.card dl { margin: 0; display: grid; gap: var(--s-2); }
+.card dt { font-size: .8rem; color: var(--c-teal); letter-spacing: .1em; font-weight: 700; }
+.card dd { margin: .2rem 0 0; font-size: .95rem; }
+.card--1 { --tint: var(--c-mint); }
+.card--2 { --tint: #F8DCCF; }
+.card--3 { --tint: #FBEBC0; }
+.card--4 { --tint: #D4E7E3; }
+
+/* ==========================================================
+   Profile
+   ========================================================== */
+.profile-grid { display: grid; gap: var(--s-4); }
+.profile-card { display: grid; gap: var(--s-3); align-items: start; }
+.avatar {
+  width: 128px; height: 128px; border-radius: 50%;
+  background: var(--c-mint);
+  display: grid; place-items: center; overflow: hidden;
+}
+.avatar svg { width: 100%; height: 100%; }
+.profile-name { font-family: var(--f-round); font-size: 1.5rem; color: var(--c-teal-deep); margin: 0; }
+.profile-name small { display: block; font-family: var(--f-sans); font-size: .9rem; color: var(--c-muted); font-weight: 400; letter-spacing: .04em; }
+.profile-role { color: var(--c-brick); font-size: .92rem; margin: .4rem 0 var(--s-2); font-weight: 500; }
+.origin { display: grid; gap: var(--s-2); }
+.origin p { padding: var(--s-2) 0 var(--s-2) var(--s-3); border-bottom: 1px solid color-mix(in srgb, var(--c-teal) 16%, transparent); margin: 0; }
+.origin p::before { content: "→ "; color: var(--c-coral); font-family: var(--f-round); }
+.profile-note { margin-top: var(--s-4); color: var(--c-muted); font-size: .9rem; }
+
+/* ==========================================================
+   Work（実績は後から追加。架空の実績は置かない）
+   ========================================================== */
+.work { background: var(--c-ivory-2); }
+.work-list { display: grid; gap: var(--s-3); grid-template-columns: 1fr; }
+.work-item { background: #fff; border-radius: var(--radius); padding: var(--s-3); }
+.work-item .tag { display: inline-block; font-size: .75rem; color: var(--c-teal-deep); background: var(--c-mint); padding: .15rem .7rem; border-radius: 999px; margin-bottom: .6rem; }
+.work-item p { margin: 0; color: var(--c-muted); }
+.work-empty {
+  border: 1.5px dashed color-mix(in srgb, var(--c-teal) 35%, transparent);
+  border-radius: var(--radius);
+  padding: var(--s-4) var(--s-3);
+  background: rgba(255,255,255,.5);
+}
+.work-empty p { margin: 0; color: var(--c-muted); }
+.work-themes { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: var(--s-3) 0 0; }
+.work-themes li { font-size: .88rem; padding: .35rem .9rem; border-radius: 999px; background: #fff; color: var(--c-teal-deep); border: 1px solid color-mix(in srgb, var(--c-teal) 22%, transparent); }
+
+/* ==========================================================
+   Note
+   ========================================================== */
+.note { background: var(--c-ivory); }
+.note-intro { max-width: 36em; margin-bottom: var(--s-4); }
+.note-list { display: grid; gap: var(--s-3); grid-template-columns: 1fr; }
+.note-card {
+  display: grid; gap: .5rem;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--s-3);
+  text-decoration: none;
+  color: var(--c-ink);
+  border: 1px solid color-mix(in srgb, var(--c-teal) 10%, transparent);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.note-card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -22px rgba(43,90,90,.45); }
+.note-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-size: .8rem; color: var(--c-muted); }
+.note-cat { font-size: .75rem; color: var(--c-teal-deep); background: var(--c-mint); padding: .1rem .7rem; border-radius: 999px; }
+.note-sample { font-size: .72rem; color: var(--c-brick); border: 1px solid var(--c-brick); padding: 0 .55rem; border-radius: 999px; }
+.note-card h3 { font-size: 1.1rem; line-height: 1.6; margin: 0; }
+.note-card p { margin: 0; font-size: .92rem; color: var(--c-muted); }
+.note-card .note-read { font-size: .85rem; color: var(--c-teal-deep); margin-top: .3rem; }
+.note-empty { background: rgba(255,255,255,.6); border: 1.5px dashed color-mix(in srgb, var(--c-teal) 35%, transparent); border-radius: var(--radius); padding: var(--s-3); }
+.note-empty p { margin: 0; color: var(--c-muted); }
+.note-more { margin-top: var(--s-4); }
+.note-more .btn { margin-top: 0; }
+.note-foot { margin: var(--s-2) 0 0; font-size: .85rem; color: var(--c-muted); }
+@media (min-width: 720px) {
+  .note-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ==========================================================
+   Message
+   ========================================================== */
+/* ==========================================================
+   Contact
+   ========================================================== */
+.contact { background: var(--c-mint); }
+.contact .rings { right: -10%; bottom: -20%; width: min(70vw, 360px); }
+.contact-inner { position: relative; z-index: 1; max-width: 36em; }
+.contact-lead { font-family: var(--f-round); font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); color: var(--c-teal-deep); margin: 0 0 var(--s-3); line-height: 1.7; }
+.contact-chips { list-style: none; padding: 0; margin: 0 0 var(--s-3); display: grid; gap: .6rem; }
+.contact-chips li { background: rgba(255,255,255,.8); border-radius: 14px; padding: .8rem 1rem; font-size: .95rem; }
+.contact-chips li::before { content: "・"; color: var(--c-coral); font-weight: 700; }
+.contact-mail { margin-top: var(--s-4); font-size: .9rem; color: var(--c-muted); }
+.contact-mail a { color: var(--c-teal-deep); font-weight: 500; }
+
+/* 問い合わせフォーム */
+.contact-form { background: rgba(255,255,255,.85); border-radius: var(--radius); padding: var(--s-4) var(--s-3); display: grid; gap: var(--s-3); }
+.field { display: grid; gap: .4rem; }
+.field label { font-size: .92rem; font-weight: 500; color: var(--c-teal-deep); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 16px; /* iOSの自動ズーム防止 */
+  color: var(--c-ink);
+  background: var(--c-ivory);
+  border: 1.5px solid color-mix(in srgb, var(--c-teal) 28%, transparent);
+  border-radius: 12px;
+  padding: .7rem .9rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.field textarea { resize: vertical; min-height: 9rem; line-height: 1.7; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--c-teal);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-yellow) 35%, transparent);
+}
+.field.check { grid-template-columns: auto 1fr; align-items: start; gap: .7rem; }
+.field.check input { width: 20px; height: 20px; margin-top: .3rem; accent-color: var(--c-teal); }
+.field.check label { font-weight: 400; font-size: .88rem; color: var(--c-ink); line-height: 1.7; }
+.req, .opt { font-size: .7rem; padding: .05rem .45rem; border-radius: 999px; margin-left: .3rem; vertical-align: .1em; }
+.req { background: var(--c-coral); color: #fff; }
+.opt { background: var(--c-mint); color: var(--c-teal-deep); }
+.field.invalid input, .field.invalid select, .field.invalid textarea { border-color: var(--c-brick); }
+.field .err { font-size: .82rem; color: var(--c-brick); margin: 0; }
+.field.check .err { grid-column: 2; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.contact-form .btn { justify-self: start; margin-top: 0; border: 0; font: inherit; cursor: pointer; }
+.contact-form .btn[disabled] { opacity: .6; cursor: wait; }
+.form-status { margin: 0; font-size: .92rem; min-height: 1.5em; }
+.form-status.ok { color: var(--c-teal-deep); }
+.form-status.ng { color: var(--c-brick); }
+
+/* ==========================================================
+   Footer
+   ========================================================== */
+.site-footer { padding-block: var(--s-4); font-size: .85rem; color: var(--c-muted); background: var(--c-ivory); border-top: 1px solid color-mix(in srgb, var(--c-teal) 12%, transparent); }
+.site-footer .wrap { display: grid; gap: .6rem; }
+.site-footer a { color: var(--c-muted); }
+
+/* ==========================================================
+   Motion（控えめ・reduced-motion 対応）
+   ========================================================== */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { transition-duration: .01ms !important; }
+}
+
+/* ==========================================================
+   Responsive（スマホ最優先 → PCで広げる）
+   ========================================================== */
+@media (min-width: 720px) {
+  body { font-size: 17px; }
+  section { padding-block: 7.5rem; }
+  .site-header .wrap { height: 76px; }
+  .site-nav { position: static; transform: none; opacity: 1; visibility: visible; border: 0; padding: 0; background: none; }
+  .nav-toggle { display: none; }
+  .site-nav ul { display: flex; gap: 1.6rem; }
+  .site-nav a { border: 0; padding: .3rem 0; font-size: .92rem; }
+  .site-nav a:hover { color: var(--c-teal); }
+  .cards { grid-template-columns: 1fr 1fr; }
+  .work-list { grid-template-columns: 1fr 1fr; }
+  .profile-card { grid-template-columns: 160px 1fr; gap: var(--s-4); }
+  .avatar { width: 150px; height: 150px; }
+  .origin { grid-template-columns: 1fr 1fr; gap: 0 var(--s-4); }
+  .hero .rings { right: -6%; top: 0; width: 620px; }
+}
+@media (min-width: 1000px) {
+  .cards { gap: var(--s-4); }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<!-- ロゴ（名刺と同じ：コーラル×ティール、重なり部分は黄色） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="clip-coral"><circle cx="16" cy="20" r="11"/></clipPath>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Co-Creation Studio and. トップへ">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="20" r="11" fill="#D97B66"/>
+        <circle cx="24" cy="20" r="11" fill="#3A7A78"/>
+        <circle cx="24" cy="20" r="11" fill="#EEC45A" clip-path="url(#clip-coral)"/>
+      </svg>
+      <span class="brand-name">Co-Creation Studio and.<small>NPO・地域の運営基盤づくり</small></span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
+      <span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#note">Note</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== TOP ===================== -->
+<section class="hero" id="top">
+  <svg class="rings" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+    <circle cx="220" cy="300" r="170" fill="#E4EFEC"/>
+    <circle cx="380" cy="300" r="170" fill="#D97B66" opacity=".16"/>
+    <circle cx="300" cy="300" r="90" fill="#EEC45A" opacity=".22"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <p class="hero-eyebrow reveal">NPO・地域の運営基盤づくり</p>
+    <h1 class="reveal">地域で動いてきたから、<span class="accent">届く仕組み</span>を。</h1>
+    <p class="hero-sub reveal">NPOや地域で活動する人たちが、<br>安心して動き続けられる仕組みを、ともにつくります。</p>
+    <a class="btn reveal" href="#contact">まずは、話してみませんか。</a>
+    <p class="hero-brand reveal"><strong>Co-Creation Studio and.</strong>　代表 宮本 亜佳音</p>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="about" id="about">
+  <svg class="rings" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <circle cx="150" cy="200" r="120" fill="#E4EFEC"/>
+    <circle cx="250" cy="200" r="120" fill="#D97B66" opacity=".14"/>
+  </svg>
+  <div class="wrap about-body reveal">
+    <p class="section-label">About</p>
+    <h2>NPOの「守り」を、<br>社会の「力」に。</h2>
+    <p class="lead">ガバナンスやリスクマネジメント、組織基盤づくりは、活動を縛るためのものではありません。活動する人が安心して前に進むための、土台です。</p>
+    <p class="about-quote">安心の架け橋を、ともにつくる。</p>
+    <div class="about-points">
+      <div><p>現場で起きていることを、まず理解することから始めます。</p></div>
+      <div><p>現場だけでは解決しづらい「仕組み」の部分を、一緒に整えます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICE ===================== -->
+<section id="service">
+  <div class="wrap">
+    <div class="service-intro reveal">
+      <p class="section-label">Service</p>
+      <h2>一緒に考え、一緒につくる。</h2>
+      <p class="muted">メニューから選ぶのではなく、いまの組織や地域の状況を聞きながら、必要な部分から整えていきます。</p>
+    </div>
+
+    <div class="cards">
+      <article class="card card--1 reveal">
+        <p class="card-no">01</p>
+        <h3>組織基盤整備</h3>
+        <p class="card-desc">動き続けるための、体制とバックオフィスを整えます。</p>
+        <dl>
+          <div><dt>こんなときに</dt><dd>人やお金の動きが、少しずつ見えにくくなってきたとき</dd></div>
+          <div><dt>一緒につくるもの</dt><dd>体制の整理、業務フロー、役割・権限の整理</dd></div>
+        </dl>
+      </article>
+
+      <article class="card card--2 reveal">
+        <p class="card-no">02</p>
+        <h3>ガバナンス</h3>
+        <p class="card-desc">誰が、どこで、何を決めるのか。意思決定の道筋をつくります。</p>
+        <dl>
+          <div><dt>こんなときに</dt><dd>理事会や会議で、決め方に迷うことが増えたとき</dd></div>
+          <div><dt>一緒につくるもの</dt><dd>意思決定フロー、規程・ルール、利益相反などの仕組み</dd></div>
+        </dl>
+      </article>
+
+      <article class="card card--3 reveal">
+        <p class="card-no">03</p>
+        <h3>リスクマネジメント</h3>
+        <p class="card-desc">起きてから慌てないために、先に備えておく仕組みをつくります。</p>
+        <dl>
+          <div><dt>こんなときに</dt><dd>「もしものとき、どうしよう」と話せていないとき</dd></div>
+          <div><dt>一緒につくるもの</dt><dd>リスクの棚卸し、インシデント対応、個人情報管理、BCP、ヒヤリハットの仕組み</dd></div>
+        </dl>
+      </article>
+
+      <article class="card card--4 reveal">
+        <p class="card-no">04</p>
+        <h3>事業設計</h3>
+        <p class="card-desc">やりたいことが、地域や社会に届く形になるよう、設計を一緒に考えます。</p>
+        <dl>
+          <div><dt>こんなときに</dt><dd>活動の意味は分かっているけれど、伝え方や評価に悩むとき</dd></div>
+          <div><dt>一緒につくるもの</dt><dd>ロジックモデル、事業計画、評価の設計、協働の進め方</dd></div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROFILE ===================== -->
+<section id="profile" style="background:var(--c-ivory)">
+  <div class="wrap">
+    <p class="section-label reveal">Profile</p>
+    <h2 class="reveal">地域で活動する人を、仕組みの面から支えたい。</h2>
+
+    <div class="profile-grid">
+      <div class="profile-card reveal">
+        <div class="avatar" aria-hidden="true">
+          <svg viewBox="0 0 128 128">
+            <circle cx="52" cy="64" r="34" fill="#D97B66"/>
+            <circle cx="76" cy="64" r="34" fill="#3A7A78"/>
+            <circle cx="76" cy="64" r="34" fill="#EEC45A" clip-path="url(#clip-profile)"/>
+            <defs><clipPath id="clip-profile"><circle cx="52" cy="64" r="34"/></clipPath></defs>
+          </svg>
+        </div>
+        <div>
+          <p class="profile-name">宮本 亜佳音<small>Akane Miyamoto</small></p>
+          <p class="profile-role">代表｜NPO・地域の運営基盤づくり</p>
+          <p>現場で活動する人たちを支えたい。その思いから、この仕事をしています。</p>
+        </div>
+      </div>
+
+      <div class="origin">
+        <p>現場で活動する人を、支えたい。</p>
+        <p>できないことを責めるのではなく、助け合える仕組みをつくりたい。</p>
+        <p>活動を続けられる組織の基盤が、いちばん大事だと考えている。</p>
+        <p>地域で頑張る人に、仕組みの面から伴走したい。</p>
+      </div>
+    </div>
+    <p class="profile-note">※ 経歴・活動歴は、確認のうえ順次追加します。</p>
+  </div>
+</section>
+
+<!-- ===================== WORK ===================== -->
+<section class="work" id="work">
+  <div class="wrap">
+    <p class="section-label reveal">Work</p>
+    <h2 class="reveal">これまでの取り組み</h2>
+    <p class="muted reveal">支援してきたテーマを、ここに少しずつ追加していきます。</p>
+
+    <ul class="work-themes reveal" aria-label="支援テーマ">
+      <li>組織基盤整備</li>
+      <li>ガバナンス</li>
+      <li>リスクマネジメント</li>
+      <li>事業設計</li>
+    </ul>
+
+    <div class="work-list" id="work-list" style="margin-top:var(--s-4)"></div>
+    <!-- 実績は下の配列に追加するだけで表示されます。架空の実績は入れないこと。
+         例：{ tag: "ガバナンス", title: "（取り組み名）", body: "（概要）" } -->
+  </div>
+</section>
+
+<!-- ===================== NOTE ===================== -->
+<section class="note" id="note">
+  <div class="wrap">
+    <p class="section-label reveal">Note</p>
+    <h2 class="reveal">現場で考えたこと。<br>仕組みにしてみたこと。</h2>
+    <p class="muted reveal note-intro">NPO、地域、ガバナンス、組織づくり、リスクマネジメント、地域協働。現場で考えてきたことを、コラムとして書いています。</p>
+
+    <div class="note-list" id="note-list"></div>
+
+    <div class="note-more reveal">
+      <a class="btn btn-ghost" id="note-profile-link" href="#" target="_blank" rel="noopener">noteを読む</a>
+      <p class="note-foot">※ 掲載中の記事は、noteに公開されたものから順次追加します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact">
+  <svg class="rings" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <circle cx="180" cy="200" r="120" fill="#FFFFFF" opacity=".5"/>
+    <circle cx="260" cy="200" r="120" fill="#D97B66" opacity=".16"/>
+  </svg>
+  <div class="wrap contact-inner reveal">
+    <p class="section-label">Contact</p>
+    <p class="contact-lead">まずは、話してみませんか。</p>
+    <p>整理しきれていないことでも、大丈夫です。たとえば、こんな段階からでも相談できます。</p>
+    <ul class="contact-chips">
+      <li>組織のことで、少し気になっていることがある</li>
+      <li>何から整えればいいかわからない</li>
+      <li>もう動いているけれど、一度見直したい</li>
+    </ul>
+    <form class="contact-form" id="contact-form" data-endpoint="" novalidate>
+      <!-- 送信先：data-endpoint に Formspree などのフォームURLを入れると、そこに届きます。
+           空のままだと、お使いのメールアプリで下書きを開く動作になります。 -->
+
+      <div class="field">
+        <label for="f-name">お名前 <span class="req">必須</span></label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+
+      <div class="field">
+        <label for="f-org">団体名・法人名 <span class="opt">任意</span></label>
+        <input id="f-org" name="organization" type="text" autocomplete="organization">
+      </div>
+
+      <div class="field">
+        <label for="f-mail">メールアドレス <span class="req">必須</span></label>
+        <input id="f-mail" name="email" type="email" autocomplete="email" inputmode="email" required>
+      </div>
+
+      <div class="field">
+        <label for="f-topic">相談したい分野 <span class="opt">任意</span></label>
+        <select id="f-topic" name="topic">
+          <option value="">選択してください</option>
+          <option>組織基盤整備</option>
+          <option>ガバナンス</option>
+          <option>リスクマネジメント</option>
+          <option>事業設計</option>
+          <option>まだ分からない</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-body">相談したいこと <span class="req">必須</span></label>
+        <textarea id="f-body" name="message" rows="6" placeholder="うまく言葉にならなくても大丈夫です。今気になっていることを、思いつくままで構いません。" required></textarea>
+      </div>
+
+      <!-- スパム対策のおとり欄（人からは見えません） -->
+      <div class="hp" aria-hidden="true">
+        <label for="f-website">Website</label>
+        <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="field check">
+        <input id="f-agree" name="agree" type="checkbox" required>
+        <label for="f-agree">個人情報の取り扱いに同意します。いただいた内容は、ご相談への返信のためだけに使用します。 <span class="req">必須</span></label>
+      </div>
+
+      <button class="btn" type="submit">送信する</button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="contact-mail">フォームが使いにくい場合は、メールでも受け付けています：<a href="mailto:miyamoto@ccs-and.com">miyamoto@ccs-and.com</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p style="margin:0">Co-Creation Studio and.　代表 宮本 亜佳音</p>
+    <p style="margin:0">Mail: <a href="mailto:miyamoto@ccs-and.com">miyamoto@ccs-and.com</a></p>
+    <p style="margin:0">© <span id="year"></span> Co-Creation Studio and.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  /* ---- 実績データ（後から追加するだけ。架空の実績は入れない） ---- */
+  const works = [];
+
+  const list = document.getElementById('work-list');
+  if (works.length === 0) {
+    list.innerHTML = '<div class="work-empty"><p>実績は、掲載の準備が整い次第、順次追加します。</p></div>';
+  } else {
+    list.innerHTML = works.map(w => `
+      <article class="work-item">
+        <span class="tag">${w.tag}</span>
+        <h3>${w.title}</h3>
+        <p>${w.body}</p>
+      </article>`).join('');
+  }
+
+  /* ---- ナビ（スマホ） ---- */
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  const setOpen = (open) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    nav.classList.toggle('open', open);
+  };
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
+  /* ---- ふわっと表示（控えめ） ---- */
+  const els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  } else {
+    els.forEach(el => el.classList.add('in'));
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- Note（noteの記事一覧）
+     実在するnote記事のみ追加してください。
+     sample: true は「サンプル」表示になります。
+     url は、各記事のnoteのURLを入れます（空の場合はnoteのプロフィールへ）。 ---- */
+  const NOTE_PROFILE_URL = 'https://note.com/'; // ← 亜佳音さんのnoteのURLに差し替え
+  const notes = [
+    { sample: true, date: '2026.09.01', category: 'ガバナンス',
+      title: '（サンプル）理事会の「決め方」を、もう一度見直してみる',
+      body: '誰が何を決めるのか。曖昧なまま続いてきた決め方を、現場の感覚とあわせて整理する視点を書く予定の記事です。',
+      url: '' },
+    { sample: true, date: '2026.09.15', category: 'リスクマネジメント',
+      title: '（サンプル）「もしものとき」を、怖がらずに話せる組織へ',
+      body: '起きてから慌てないために、先に話しておきたいことの考え方を書く予定の記事です。',
+      url: '' },
+    { sample: true, date: '2026.10.01', category: '地域協働',
+      title: '（サンプル）地域の人と、同じ景色を見るために',
+      body: '立場が違う人と協働するときに、最初に共有しておきたいことについて書く予定の記事です。',
+      url: '' }
+  ];
+
+  const noteList = document.getElementById('note-list');
+  const noteLink = document.getElementById('note-profile-link');
+  noteLink.href = NOTE_PROFILE_URL;
+
+  if (notes.length === 0) {
+    noteList.innerHTML = '<div class="note-empty"><p>記事は準備が整い次第、ここに追加します。</p></div>';
+  } else {
+    noteList.innerHTML = notes.map(n => `
+      <a class="note-card" href="${n.url || NOTE_PROFILE_URL}" target="_blank" rel="noopener">
+        <div class="note-meta">
+          <span class="note-cat">${n.category}</span>
+          <time>${n.date}</time>
+          ${n.sample ? '<span class="note-sample">サンプル</span>' : ''}
+        </div>
+        <h3>${n.title}</h3>
+        <p>${n.body}</p>
+        <span class="note-read">noteで読む →</span>
+      </a>`).join('');
+  }
+
+  /* ---- 問い合わせフォーム ---- */
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const MAIL_TO = 'miyamoto@ccs-and.com';
+
+  const rules = [
+    { id: 'f-name', msg: 'お名前を入力してください。' },
+    { id: 'f-mail', msg: 'メールアドレスを入力してください。', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || 'メールアドレスの形式を確認してください。' },
+    { id: 'f-body', msg: '相談したいことを入力してください。' },
+    { id: 'f-agree', msg: '個人情報の取り扱いへの同意にチェックしてください。', checkbox: true }
+  ];
+
+  const clearErrors = () => {
+    form.querySelectorAll('.err').forEach(e => e.remove());
+    form.querySelectorAll('.invalid').forEach(e => e.classList.remove('invalid'));
+  };
+
+  const validate = () => {
+    clearErrors();
+    let first = null;
+    rules.forEach(r => {
+      const el = document.getElementById(r.id);
+      const wrap = el.closest('.field');
+      let error = null;
+      if (r.checkbox) {
+        if (!el.checked) error = r.msg;
+      } else {
+        const v = el.value.trim();
+        if (!v) error = r.msg;
+        else if (r.check) { const res = r.check(v); if (res !== true) error = res; }
+      }
+      if (error) {
+        wrap.classList.add('invalid');
+        const p = document.createElement('p');
+        p.className = 'err';
+        p.textContent = error;
+        wrap.appendChild(p);
+        if (!first) first = el;
+      }
+    });
+    if (first) first.focus();
+    return !first;
+  };
+
+  const buildBody = (data) => [
+    `お名前：${data.name}`,
+    `団体名：${data.organization || '（未記入）'}`,
+    `メール：${data.email}`,
+    `相談分野：${data.topic || '（未選択）'}`,
+    '',
+    '相談したいこと：',
+    data.message
+  ].join('\n');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'form-status';
+    status.textContent = '';
+
+    if (!validate()) {
+      status.classList.add('ng');
+      status.textContent = '入力内容を確認してください。';
+      return;
+    }
+
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+
+    // スパム対策：おとり欄に入力があれば何もせず完了扱い
+    if (data.website) { form.reset(); status.classList.add('ok'); status.textContent = '送信しました。ありがとうございます。'; return; }
+
+    const endpoint = form.dataset.endpoint;
+
+    // 送信先が未設定：メールアプリで下書きを開く
+    if (!endpoint) {
+      const subject = `【お問い合わせ】${data.topic || 'ご相談'}`;
+      location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildBody(data))}`;
+      status.classList.add('ok');
+      status.textContent = 'メールアプリが開かない場合は、miyamoto@ccs-and.com まで直接ご連絡ください。';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    const originalLabel = submitBtn.textContent;
+    submitBtn.textContent = '送信しています…';
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: fd
+      });
+      if (!res.ok) throw new Error('bad response');
+      form.reset();
+      status.classList.add('ok');
+      status.textContent = '送信しました。内容を確認のうえ、数日以内にご返信します。';
+    } catch (err) {
+      status.classList.add('ng');
+      status.textContent = '送信できませんでした。時間をおいて再度お試しいただくか、メールでご連絡ください。';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
+  });
+})();
+</script>
+</body>
+</html>
