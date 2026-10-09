@@ -185,6 +185,9 @@ p { margin: 0 0 1.1em; }
    Service
    ========================================================== */
 .service-intro { max-width: 36em; margin-bottom: var(--s-4); }
+.flow { list-style: none; padding: 0; margin: 0 0 var(--s-4); display: flex; flex-wrap: wrap; gap: .5rem; font-size: .85rem; }
+.flow li { background: #fff; color: var(--c-teal-deep); border: 1px solid color-mix(in srgb, var(--c-teal) 22%, transparent); border-radius: 999px; padding: .35rem .9rem; }
+.flow li:not(:last-child)::after { content: "→"; margin-left: .5rem; color: var(--c-coral); }
 .cards { display: grid; gap: var(--s-3); grid-template-columns: 1fr; }
 .card {
   position: relative;
@@ -228,6 +231,8 @@ p { margin: 0 0 1.1em; }
 .origin p { padding: var(--s-2) 0 var(--s-2) var(--s-3); border-bottom: 1px solid color-mix(in srgb, var(--c-teal) 16%, transparent); margin: 0; }
 .origin p::before { content: "→ "; color: var(--c-coral); font-family: var(--f-round); }
 .profile-note { margin-top: var(--s-4); color: var(--c-muted); font-size: .9rem; }
+.exp { list-style: none; padding: 0; margin: var(--s-3) 0 0; display: grid; gap: .55rem; font-size: .93rem; }
+.exp li { padding-left: 1rem; border-left: 2px solid var(--c-mint-2); }
 
 /* ==========================================================
    Work（実績は後から追加。架空の実績は置かない）
@@ -426,7 +431,7 @@ p { margin: 0 0 1.1em; }
   <div class="wrap hero-inner">
     <p class="hero-eyebrow reveal">NPO・地域の運営基盤づくり</p>
     <h1 class="reveal"><span class="line">地域で動いてきたから、</span><br><span class="line">届く<span class="accent">仕組み</span>を。</span></h1>
-    <p class="hero-sub reveal">NPOや地域で活動する人たちが、<br>安心して動き続けられる仕組みを、ともにつくります。</p>
+    <p class="hero-sub reveal">地域の現場を知る代表が、<br>事業構想・資金獲得・組織基盤を、ひとつにつなげて考えます。</p>
     <a class="btn reveal" href="#contact">まずは、話してみませんか。</a>
     <p class="hero-brand reveal"><strong>Co-Creation Studio and.</strong>　代表 宮本 亜佳音</p>
   </div>
@@ -444,8 +449,8 @@ p { margin: 0 0 1.1em; }
     <p class="lead">ガバナンスやリスクマネジメント、組織基盤づくりは、活動を縛るためのものではありません。活動する人が安心して前に進むための、土台です。</p>
     <p class="about-quote">安心の架け橋を、ともにつくる。</p>
     <div class="about-points">
-      <div><p>現場で起きていることを、まず理解することから始めます。</p></div>
-      <div><p>現場だけでは解決しづらい「仕組み」の部分を、一緒に整えます。</p></div>
+      <div><p>地域で起きていることを、まず理解することから始めます。</p></div>
+      <div><p>団体だけでは解決しづらい「仕組み」の部分を、一緒に整えます。</p></div>
     </div>
   </div>
 </section>
@@ -458,6 +463,12 @@ p { margin: 0 0 1.1em; }
       <h2>一緒に考え、一緒につくる。</h2>
       <p class="muted">メニューから選ぶのではなく、いまの組織や地域の状況を聞きながら、必要な部分から整えていきます。</p>
     </div>
+    <ol class="flow reveal" aria-label="支援の流れ">
+      <li>事業設計で構想をかたちに</li>
+      <li>資金の獲得と管理を整える</li>
+      <li>組織基盤で体制を整える</li>
+      <li>ガバナンスとリスク管理で続ける</li>
+    </ol>
 
     <div class="cards">
       <article class="card card--1 reveal">
@@ -466,7 +477,7 @@ p { margin: 0 0 1.1em; }
         <p class="card-desc">動き続けるための、体制とバックオフィスを整えます。</p>
         <dl>
           <div><dt>こんなときに</dt><dd>人やお金の動きが、少しずつ見えにくくなってきたとき</dd></div>
-          <div><dt>一緒につくるもの</dt><dd>体制の整理、業務フロー、役割・権限の整理</dd></div>
+          <div><dt>一緒につくるもの</dt><dd>体制の整理、業務フロー、役割・権限の整理、助成金の管理・報告の仕組み</dd></div>
         </dl>
       </article>
 
@@ -486,17 +497,17 @@ p { margin: 0 0 1.1em; }
         <p class="card-desc">起きてから慌てないために、先に備えておく仕組みをつくります。</p>
         <dl>
           <div><dt>こんなときに</dt><dd>「もしものとき、どうしよう」と話せていないとき</dd></div>
-          <div><dt>一緒につくるもの</dt><dd>リスクの棚卸し、インシデント対応、個人情報管理、BCP、ヒヤリハットの仕組み</dd></div>
+          <div><dt>一緒につくるもの</dt><dd>リスクの棚卸し、インシデント対応、個人情報管理、ヒヤリハットの仕組み</dd></div>
         </dl>
       </article>
 
       <article class="card card--4 reveal">
         <p class="card-no">04</p>
         <h3>事業設計</h3>
-        <p class="card-desc">やりたいことが、地域や社会に届く形になるよう、設計を一緒に考えます。</p>
+        <p class="card-desc">構想を事業にし、資金の獲得までを一緒に設計します。</p>
         <dl>
-          <div><dt>こんなときに</dt><dd>活動の意味は分かっているけれど、伝え方や評価に悩むとき</dd></div>
-          <div><dt>一緒につくるもの</dt><dd>ロジックモデル、事業計画、評価の設計、協働の進め方</dd></div>
+          <div><dt>こんなときに</dt><dd>活動の意味は分かっているけれど、資金や伝え方、評価に悩むとき</dd></div>
+          <div><dt>一緒につくるもの</dt><dd>理念・ビジョンの言語化、ロジックモデル、事業計画、資金計画、補助金・助成金・指定管理・自治体事業の受託に向けた準備、評価の設計、協働の進め方、法人化支援</dd></div>
         </dl>
       </article>
     </div>
@@ -522,18 +533,24 @@ p { margin: 0 0 1.1em; }
         <div>
           <p class="profile-name">宮本 亜佳音<small>Akane Miyamoto</small></p>
           <p class="profile-role">代表｜NPO・地域の運営基盤づくり</p>
-          <p>現場で活動する人たちを支えたい。その思いから、この仕事をしています。</p>
+          <p>地域で活動する人たちを支えたい。その思いから、この仕事をしています。</p>
+          <ul class="exp">
+            <li>千葉県八千代市を拠点に、商工・農業・福祉など、分野をまたいだ地域活動に取り組んできました。</li>
+            <li>NPO法人の理事長として事業を運営してきました。</li>
+            <li>2023年度グッドデザイン大賞を受賞した老人デイサービスセンター「52間の縁側」で、プロデューサーを務めました。</li>
+            <li>助成金・補助金の獲得、指定管理、県の事業の受託に取り組んできました。</li>
+            <li>助成金の管理・報告を支える業務フローやルールづくりなど、組織基盤の整備にも携わっています。</li>
+          </ul>
         </div>
       </div>
 
       <div class="origin">
-        <p>現場で活動する人を、支えたい。</p>
+        <p>地域で活動する人を、支えたい。</p>
         <p>できないことを責めるのではなく、助け合える仕組みをつくりたい。</p>
         <p>活動を続けられる組織の基盤が、いちばん大事だと考えている。</p>
         <p>地域で頑張る人に、仕組みの面から伴走したい。</p>
       </div>
     </div>
-    <p class="profile-note">※ 経歴・活動歴は、確認のうえ順次追加します。</p>
   </div>
 </section>
 
@@ -561,8 +578,8 @@ p { margin: 0 0 1.1em; }
 <section class="note" id="note">
   <div class="wrap">
     <p class="section-label reveal">Note</p>
-    <h2 class="reveal">現場で考えたこと。<br>仕組みにしてみたこと。</h2>
-    <p class="muted reveal note-intro">NPO、地域、ガバナンス、組織づくり、リスクマネジメント、地域協働。現場で考えてきたことを、コラムとして書いています。</p>
+    <h2 class="reveal">地域で考えたこと。<br>仕組みにしてみたこと。</h2>
+    <p class="muted reveal note-intro">NPO、地域、ガバナンス、組織づくり、リスクマネジメント、地域協働。地域で考えてきたことを、コラムとして書いています。</p>
 
     <div class="note-list" id="note-list"></div>
 
@@ -584,9 +601,13 @@ p { margin: 0 0 1.1em; }
     <p class="contact-lead">まずは、話してみませんか。</p>
     <p>整理しきれていないことでも、大丈夫です。たとえば、こんな段階からでも相談できます。</p>
     <ul class="contact-chips">
-      <li>組織のことで、少し気になっていることがある</li>
+      <li>組織・団体のことで気になっていることがある</li>
       <li>何から整えればいいかわからない</li>
       <li>もう動いているけれど、一度見直したい</li>
+      <li>事業を実現したいが、計画や進め方を整理したい</li>
+      <li>補助金・助成金を活用したいが、何から始めればよいか分からない</li>
+      <li>助成金の管理や組織のルールを整えたい</li>
+      <li>地域の関係者と協働して事業を進めたい</li>
     </ul>
     <form class="contact-form" id="contact-form" data-endpoint="" novalidate>
       <!-- 送信先：data-endpoint に Formspree などのフォームURLを入れると、そこに届きます。
@@ -657,7 +678,11 @@ p { margin: 0 0 1.1em; }
 <script>
 (() => {
   /* ---- 実績データ（後から追加するだけ。架空の実績は入れない） ---- */
-  const works = [];
+  const works = [
+    { tag: '事業プロデュース',
+      title: '老人デイサービスセンター「52間の縁側」',
+      body: '千葉県八千代市で2022年12月に開所した、地域共生型の老人デイサービスセンターです。事業者、建築家、地域の人々が協働して生まれ、2023年度グッドデザイン大賞を受賞しました。代表はプロデューサーとして、地域コミュニティデザインと補助金申請の面から関わりました。' }
+  ];
 
   const list = document.getElementById('work-list');
   if (works.length === 0) {
