@@ -609,9 +609,10 @@ p { margin: 0 0 1.1em; }
       <li>助成金の管理や組織のルールを整えたい</li>
       <li>地域の関係者と協働して事業を進めたい</li>
     </ul>
-    <form class="contact-form" id="contact-form" data-endpoint="" novalidate>
-      <!-- 送信先：data-endpoint に Formspree などのフォームURLを入れると、そこに届きます。
-           空のままだと、お使いのメールアプリで下書きを開く動作になります。 -->
+    <form class="contact-form" id="contact-form" data-endpoint="https://api.web3forms.com/submit" novalidate>
+      <input type="hidden" name="access_key" value="37eeb330-761a-4ccc-b580-afd407e5989c">
+      <input type="hidden" name="subject" value="【CCS】サイトからのお問い合わせ">
+      <input type="hidden" name="from_name" value="Co-Creation Studio and. お問い合わせフォーム">
 
       <div class="field">
         <label for="f-name">お名前 <span class="req">必須</span></label>
