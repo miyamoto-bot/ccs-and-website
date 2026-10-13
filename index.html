@@ -534,13 +534,7 @@ p { margin: 0 0 1.1em; }
           <p class="profile-name">宮本 亜佳音<small>Akane Miyamoto</small></p>
           <p class="profile-role">代表｜NPO・地域の運営基盤づくり</p>
           <p>地域で活動する人たちを支えたい。その思いから、この仕事をしています。</p>
-          <ul class="exp">
-            <li>千葉県八千代市を拠点に、商工・農業・福祉など、分野をまたいだ地域活動に取り組んできました。</li>
-            <li>NPO法人の理事長として事業を運営してきました。</li>
-            <li>2023年度グッドデザイン大賞を受賞した老人デイサービスセンター「52間の縁側」で、プロデューサーを務めました。</li>
-            <li>助成金・補助金の獲得、指定管理、県の事業の受託に取り組んできました。</li>
-            <li>助成金の管理・報告を支える業務フローやルールづくりなど、組織基盤の整備にも携わっています。</li>
-          </ul>
+          <p>千葉県を拠点に、商工・農業・福祉など、分野をまたいだ地域活動に取り組んできました。NPO法人の理事長として事業を運営してきたほか、2023年度グッドデザイン大賞を受賞した老人デイサービスセンター「52間の縁側」では、プロデューサーを務めました。助成金・補助金の獲得、指定管理、県の事業の受託にも取り組み、助成金の管理・報告を支える業務フローやルールづくりなど、組織基盤の整備にも携わっています。</p>
         </div>
       </div>
 
@@ -723,44 +717,40 @@ p { margin: 0 0 1.1em; }
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* ---- Note（noteの記事一覧）
-     実在するnote記事のみ追加してください。
-     sample: true は「サンプル」表示になります。
-     url は、各記事のnoteのURLを入れます（空の場合はnoteのプロフィールへ）。 ---- */
+     記事は notes.json から読み込みます。notes.json は GitHub Actions が
+     note の RSS（https://note.com/tek/rss）から毎日自動更新します。
+     手動で記事を書き換える必要はありません。 ---- */
   const NOTE_PROFILE_URL = 'https://note.com/tek';
-  const notes = [
-    { sample: false, date: '2025.10.11', category: '活動の振り返り',
-      title: '私の最初の挑戦 フリーペーパーをどうやって作ったか',
-      body: '地域の子どもたちに「いろんな生き方がある」と伝えたくて始めたフリーペーパーづくりの、当時の作り方を振り返ります。',
-      url: 'https://note.com/tek/n/n42c359dfcba4' },
-    { sample: false, date: '2025.09.29', category: 'NPO',
-      title: 'NPOに大切なのは“共感”',
-      body: '地域でフリーペーパーを作る中で気づいた、活動を支える「共感」の大切さについて書いています。',
-      url: 'https://note.com/tek/n/n10021f2ea753' },
-    { sample: false, date: '2025.09.28', category: '想い',
-      title: 'ゆらぎラボ立ち上げの想い',
-      body: '不確実な時代に「揺らぎ」を前提に生きる力を育てたい、という思いで立ち上げた経緯を書いています。',
-      url: 'https://note.com/tek/n/n7619003c47d4' }
-  ];
+  const NOTE_MAX = 3; // トップに表示する件数
 
   const noteList = document.getElementById('note-list');
   const noteLink = document.getElementById('note-profile-link');
   noteLink.href = NOTE_PROFILE_URL;
 
-  if (notes.length === 0) {
-    noteList.innerHTML = '<div class="note-empty"><p>記事は準備が整い次第、ここに追加します。</p></div>';
-  } else {
-    noteList.innerHTML = notes.map(n => `
-      <a class="note-card" href="${n.url || NOTE_PROFILE_URL}" target="_blank" rel="noopener">
+  const escHtml = (s) => String(s ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  const renderNotes = (notes) => {
+    const items = notes.filter(n => n && typeof n.url === 'string' && n.url.startsWith('https://note.com/'));
+    if (items.length === 0) {
+      noteList.innerHTML = `<div class="note-empty"><p><a href="${NOTE_PROFILE_URL}" target="_blank" rel="noopener">noteで記事を読む →</a></p></div>`;
+      return;
+    }
+    noteList.innerHTML = items.slice(0, NOTE_MAX).map(n => `
+      <a class="note-card" href="${escHtml(n.url)}" target="_blank" rel="noopener">
         <div class="note-meta">
-          <span class="note-cat">${n.category}</span>
-          <time>${n.date}</time>
-          ${n.sample ? '<span class="note-sample">サンプル</span>' : ''}
+          <time>${escHtml(n.date)}</time>
         </div>
-        <h3>${n.title}</h3>
-        <p>${n.body}</p>
+        <h3>${escHtml(n.title)}</h3>
+        <p>${escHtml(n.body)}</p>
         <span class="note-read">noteで読む →</span>
       </a>`).join('');
-  }
+  };
+
+  fetch('notes.json', { cache: 'no-cache' })
+    .then(r => { if (!r.ok) throw new Error('notes.json not found'); return r.json(); })
+    .then(data => renderNotes(Array.isArray(data.notes) ? data.notes : []))
+    .catch(() => renderNotes([]));
 
   /* ---- 問い合わせフォーム ---- */
   const form = document.getElementById('contact-form');
